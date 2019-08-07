@@ -1,0 +1,36 @@
+<ion-toolbar class="header" text-center>
+  <ion-icon slot="start" name="menu" class="icon-menu" (click)="openMenu()"></ion-icon>
+  <img class="logo" src="/assets/icons/logo.png" />
+  <ion-icon slot="end" name="ios-save" class="icon-save" (click)="saveAll()"></ion-icon>
+  <ion-icon slot="end" name="volume-off" class="icon-mute" (click)="global.muteAll()"></ion-icon>
+</ion-toolbar>
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ng-container *ngFor="let item of itemsClone; let i = index">
+      <div class="accordion-header" (click)="expandItem(item)">
+        <span class="category">{{item.category}}</span>
+        <ion-icon *ngIf="!item.expanded" class="category-icon" name="ios-arrow-down"></ion-icon>
+        <ion-icon *ngIf="item.expanded" class="category-icon" name="ios-arrow-up"></ion-icon>
+      </div>
+      <app-expandable [expandHeight]="(item.subitems.length * 60) + 'px'" [expanded]="item.expanded">
+        <ion-row class="ion-no-padding" *ngFor="let sub of item.subitems; trackBy: trackByFn">
+          <ion-col class="ion-no-padding">
+            <div class="background" text-center>
+              <img class="background-image" (click)="playAudio(sub)" src="{{sub.background}}" />
+              <img class="icon" (click)="playAudio(sub)" src="{{sub.icon}}" />
+              <span class="item-text" *ngIf="sub.audio.paused">
+                    {{sub.name}}
+                  </span>
+              <div class="range" *ngIf="!sub.audio.paused">
+                <ion-range #myRange min="0" max="100" [value]="global.getAudioLevel(sub.audio)" step="1" color="light" (ionChange)="global.changeVol($event, sub.audio)">
+                  <ion-icon color="light" slot="start" name="volume-mute"></ion-icon>
+                  <ion-icon color="light" slot="end" name="volume-high"></ion-icon>
+                </ion-range>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </app-expandable>
+    </ng-container>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,72 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These 
+// styles are for the entire app and not just one component. Additionally, this 
+// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// and used throughout the application.
+
+.platform-android {
+    
+    
+      .ion-page {
+    
+    
+        ion-header {
+          ion-navbar {
+            padding-top: calc(env(safe-area-inset-top) + 24px) !important;
+            min-height: calc(76px + env(safe-area-inset-top)) !important;
+          }
+        }
+      }
+    }
+
+    .my-custom-menu {
+      --width: 250px;
+    }
+
+    .menu-toolbar {
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      ion-title{
+          margin-bottom: 22px;
+      }
+    }
+
+    .sleepyset-container {
+      
+    }
+
+
+    .sleepyset-item {
+      --background: #73286F;
+      height: 50px;
+      width: 100%;
+      color: white;
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .sleepyset-name {
+      position: absolute;
+      left: 0px;
+      top: 12px;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; 
+    }
+
+    .sleepyset-category {
+      font-size: 20px;
+      padding: 5px;
+    }
+
+    .play-button {
+      position: absolute;
+      font-size: 26px;
+      right: 10px;
+      top: 13px;
+    }

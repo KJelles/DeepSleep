@@ -1,0 +1,45 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" class="my-custom-menu" (ionWillOpen)="getSleepysets()">
+    <ion-header>
+      <ion-toolbar color="primary" text-center class="menu-toolbar">
+        <ion-title>Sleepysets</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content color="secondary">
+      <div class="sleepyset-container">
+        <div class="sleepyset-category">
+          Official:
+        </div>
+        <ion-item class="sleepyset-item" lines="none">
+          <span class="sleepyset-name">
+            It's rumbling outside
+          </span>
+          <ion-icon class="play-button" name="play-circle" (click)="loadOfficial(0)"></ion-icon>
+        </ion-item>
+        <ion-item class="sleepyset-item" lines="none">
+          <span class="sleepyset-name">
+            Warm campfire in the forest
+          </span>
+          <ion-icon class="play-button" name="play-circle" (click)="loadOfficial(1)"></ion-icon>
+        </ion-item>
+        <ion-item class="sleepyset-item" lines="none">
+          <span class="sleepyset-name">
+            Night on the beach
+          </span>
+          <ion-icon class="play-button" name="play-circle" (click)="loadOfficial(2)"></ion-icon>
+        </ion-item>
+        <div class="sleepyset-category">
+          Custom:
+        </div>
+        <ion-item class="sleepyset-item" *ngFor="let item of items; let i = index" (press)="deleteSleepyset(i)" lines="none">
+          <span class="sleepyset-name">
+            {{item}}
+          </span>
+          <ion-icon class="play-button" name="play-circle" (click)="loadSleepyset(i)"></ion-icon>
+        </ion-item>
+      </div>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+
+</ion-app>

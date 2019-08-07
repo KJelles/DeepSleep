@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>SAVE SLEEPYSET</ion-title>
+    <ion-icon text-center name="close" slot="end" class="close-button" (click)="closeModal()">  </ion-icon>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-icon text-center name="ios-save" class="save-icon">
+
+  </ion-icon>
+  <p class="save-text">Name your new and lovely sleepyset and come back for them whenever you're in the mood!</p>
+  <ion-input class="save-container" [(ngModel)]="name" placeholder="Name here!" maxlength="30"></ion-input>
+  <p *ngIf="allowName == false" class="exists-text">Name already exists!</p>
+  <p *ngIf="allowPlay == false" class="exists-text">Play your sounds before saving!</p>
+  <ion-button class="save-button" (click)="saveSleepyset()">
+    Save
+  </ion-button>
+</ion-content>

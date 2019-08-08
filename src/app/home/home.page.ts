@@ -19,7 +19,7 @@ export class HomePage {
   names = [];
   loop: any;
   itemsClone = [];
-  constructor(private storage: Storage, private nativeAudio: NativeAudio, private admobFree: AdMobFree, public modalController: ModalController, private menu: MenuController, private global: GlobalService) {
+  constructor(private storage: Storage, private nativeAudio: NativeAudio, private admobFree: AdMobFree, public modalController: ModalController, private menu: MenuController, public global: GlobalService) {
     this.ShowAd();
     this.itemsClone = global.loadData();
     console.log(this.itemsClone);

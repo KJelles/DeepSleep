@@ -25,7 +25,7 @@ export class AppComponent {
     private storage: Storage,
     private toastController: ToastController,
     private home: HomePage,
-    private global: GlobalService    
+    public global: GlobalService  
   ) {
     this.initializeApp();
     if (this.menu.isOpen()) {
@@ -72,22 +72,22 @@ export class AppComponent {
   loadOfficial(preset) {
     if (preset == 0) {
       localStorage.clear()  
-      localStorage.setItem(this.itemsClone[0].subitems[0].audio.src, "0.3")
-      localStorage.setItem(this.itemsClone[0].subitems[1].audio.src, "0.4")
+      localStorage.setItem(this.itemsClone[0].subitems[0].howl._src, "0.3")
+      localStorage.setItem(this.itemsClone[0].subitems[1].howl._src, "0.4")
       this.global.setSleepyset();
       this.presentToast();      
     }
     if (preset == 1) {
       localStorage.clear()  
-      localStorage.setItem(this.itemsClone[1].subitems[0].audio.src, "0.2")
-      localStorage.setItem(this.itemsClone[2].subitems[1].audio.src, "0.45")
+      localStorage.setItem(this.itemsClone[1].subitems[0].howl._src, "0.2")
+      localStorage.setItem(this.itemsClone[2].subitems[1].howl._src, "0.45")
       this.global.setSleepyset();
       this.presentToast();      
     }
     if (preset == 2) {
       localStorage.clear()  
-      localStorage.setItem(this.itemsClone[1].subitems[1].audio.src, "0.1")
-      localStorage.setItem(this.itemsClone[2].subitems[1].audio.src, "0.45")
+      localStorage.setItem(this.itemsClone[1].subitems[1].howl._src, "0.1")
+      localStorage.setItem(this.itemsClone[2].subitems[1].howl._src, "0.45")
       this.global.setSleepyset();
       this.presentToast();      
     }

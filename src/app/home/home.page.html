@@ -18,11 +18,11 @@
             <div class="background" text-center>
               <img class="background-image" (click)="playAudio(sub)" src="{{sub.background}}" />
               <img class="icon" (click)="playAudio(sub)" src="{{sub.icon}}" />
-              <span class="item-text" *ngIf="sub.audio.paused">
+              <span class="item-text" *ngIf="!sub.howl.playing()">
                     {{sub.name}}
                   </span>
-              <div class="range" *ngIf="!sub.audio.paused">
-                <ion-range #myRange min="0" max="100" [value]="global.getAudioLevel(sub.audio)" step="1" color="light" (ionChange)="global.changeVol($event, sub.audio)">
+              <div class="range" *ngIf="sub.howl.playing()">
+                <ion-range #myRange min="0" max="100" [value]="global.getAudioLevel(sub.howl)" step="1" color="light" (ionChange)="global.changeVol($event, sub.howl)">
                   <ion-icon color="light" slot="start" name="volume-mute"></ion-icon>
                   <ion-icon color="light" slot="end" name="volume-high"></ion-icon>
                 </ion-range>

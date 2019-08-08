@@ -30,7 +30,7 @@ ion-toolbar {
     font-size: 16px;
     text-align: center;
     color: red;
-    margin-top: 25px;
+    margin-top: 80px;
 }
 
 ion-label {
@@ -43,12 +43,14 @@ ion-input {
     align-self: center;
     --background: transparent;
     --ion-color-base: transparent !important;
-    margin-left: 10px;
+    left: 0;
+    right: 0;
     border-bottom: 2px solid white;
     width: 80%;
     --placeholder-color: white;
     --placeholder-opacity: 1;
     --color: white;
+    position: fixed;
 }
 
 .save-container {

@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { GlobalService } from '../global.service';
 
+
 @Component({
   selector: 'app-save',
   templateUrl: './save.page.html',
@@ -18,7 +19,7 @@ export class SavePage implements OnInit {
   allowPlay = null;
   items: any;
   checks = [];
-  constructor(private nav: NavController, private modalCtrl: ModalController, private storage: Storage, private toastController: ToastController, private global: GlobalService) {
+  constructor(private nav: NavController, private modalCtrl: ModalController, private storage: Storage, private toastController: ToastController, public global: GlobalService) {
     this.getData();
     this.storage.keys()
       .then(
@@ -63,10 +64,10 @@ export class SavePage implements OnInit {
   checkPlay() {
     for (let i = 0; i < this.config.length; i++) {
       for (let x = 0; x < this.config[i].subitems.length; x++) {
-        this.checks.push(this.config[i].subitems[x].audio.paused)
+        this.checks.push(this.config[i].subitems[x].howl.playing())
       }
     }
-    if (this.checks.indexOf(false) > -1) {
+    if (this.checks.indexOf(true) > -1) {
       this.allowPlay = true;
     } else {
       this.allowPlay = false;
@@ -81,11 +82,14 @@ export class SavePage implements OnInit {
     for (let i = 0; i < this.config.length; i++) {
       for (let x = 0; x < this.config[i].subitems.length; x++) {
         console.log("allow name = ", this.allowName, " allow play = ", this.allowPlay);
-        if (this.allowName && this.allowPlay) {
-          this.temp.push({ src: this.config[i].subitems[x].audio.src, vol: this.config[i].subitems[x].audio.volume })
-          this.storage.set(this.name, JSON.stringify(this.temp));
-        } else {
-          return;
+        if (this.config[i].subitems[x].howl.playing()) {
+          if (this.allowName && this.allowPlay) {
+            this.temp.push({ src: this.config[i].subitems[x].howl._src, vol: this.config[i].subitems[x].howl._volume })
+            console.log("temp is", this.temp)
+            this.storage.set(this.name, JSON.stringify(this.temp));
+          } else {
+            return;
+          }
         }
       }
     }

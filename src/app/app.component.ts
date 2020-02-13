@@ -7,7 +7,7 @@ import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { HomePage } from './home/home.page';
-import { GlobalService } from './global.service'
+import { GlobalService } from './global.service';
 
 @Component({
   selector: 'app-root',
@@ -25,11 +25,11 @@ export class AppComponent {
     private storage: Storage,
     private toastController: ToastController,
     private home: HomePage,
-    public global: GlobalService  
+    public global: GlobalService
   ) {
     this.initializeApp();
     if (this.menu.isOpen()) {
-      this.getSleepysets()
+      this.getSleepysets();
     }
     this.itemsClone = global.loadData();
   }
@@ -37,7 +37,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       if (this.platform.is('android')) {
-        this.statusBar.backgroundColorByHexString("#33000000");
+        this.statusBar.backgroundColorByHexString('#33000000');
       }
       this.splashScreen.hide();
     });
@@ -70,26 +70,26 @@ export class AppComponent {
   }
 
   loadOfficial(preset) {
-    if (preset == 0) {
-      localStorage.clear()  
-      localStorage.setItem(this.itemsClone[0].subitems[0].howl._src, "0.3")
-      localStorage.setItem(this.itemsClone[0].subitems[1].howl._src, "0.4")
+    if (preset === 0) {
+      localStorage.clear();
+      localStorage.setItem(this.itemsClone[0].subitems[0].howl._src, '0.3');
+      localStorage.setItem(this.itemsClone[0].subitems[1].howl._src, '0.4');
       this.global.setSleepyset();
-      this.presentToast();      
+      this.presentToast();
     }
-    if (preset == 1) {
-      localStorage.clear()  
-      localStorage.setItem(this.itemsClone[1].subitems[0].howl._src, "0.2")
-      localStorage.setItem(this.itemsClone[2].subitems[1].howl._src, "0.45")
+    if (preset === 1) {
+      localStorage.clear();
+      localStorage.setItem(this.itemsClone[1].subitems[0].howl._src, '0.2');
+      localStorage.setItem(this.itemsClone[3].subitems[2].howl._src, '0.45');
       this.global.setSleepyset();
-      this.presentToast();      
+      this.presentToast();
     }
-    if (preset == 2) {
-      localStorage.clear()  
-      localStorage.setItem(this.itemsClone[1].subitems[1].howl._src, "0.1")
-      localStorage.setItem(this.itemsClone[2].subitems[1].howl._src, "0.45")
+    if (preset === 2) {
+      localStorage.clear();
+      localStorage.setItem(this.itemsClone[1].subitems[1].howl._src, '0.1');
+      localStorage.setItem(this.itemsClone[3].subitems[2].howl._src, '0.45');
       this.global.setSleepyset();
-      this.presentToast();      
+      this.presentToast();
     }
   }
 
@@ -98,12 +98,12 @@ export class AppComponent {
     ).then((val) => {
       let temp = [];
       temp = JSON.parse(val);
-      localStorage.clear()  
+      localStorage.clear()
       for (let i = 0; i < temp.length; i++) {
-        localStorage.setItem(temp[i].src, temp[i].vol)        
+        localStorage.setItem(temp[i].src, temp[i].vol)
       }
       this.global.setSleepyset();
-      this.presentToast();      
+      this.presentToast();
     });
 
   }
@@ -112,7 +112,7 @@ export class AppComponent {
     this.storage.get(this.items[index]).then((val) => {
       this.storage.remove(this.items[index]);
       this.presentDeleted();
-      this.getSleepysets();  
+      this.getSleepysets();
     });
   }
 

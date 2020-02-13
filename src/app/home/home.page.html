@@ -1,9 +1,13 @@
+<!-- Start toolbar -->
 <ion-toolbar class="header" text-center>
   <ion-icon slot="start" name="menu" class="icon-menu" (click)="openMenu()"></ion-icon>
   <img class="logo" src="/assets/icons/logo.png" />
   <ion-icon slot="end" name="ios-save" class="icon-save" (click)="saveAll()"></ion-icon>
   <ion-icon slot="end" name="volume-off" class="icon-mute" (click)="global.muteAll()"></ion-icon>
 </ion-toolbar>
+<!-- End toolbar -->
+
+<!-- Start content -->
 <ion-content>
   <ion-grid class="ion-no-padding">
     <ng-container *ngFor="let item of itemsClone; let i = index">
@@ -18,13 +22,13 @@
             <div class="background" text-center>
               <img class="background-image" (click)="playAudio(sub)" src="{{sub.background}}" />
               <img class="icon" (click)="playAudio(sub)" src="{{sub.icon}}" />
-              <span class="item-text" *ngIf="!sub.howl.playing()">
+              <span class="item-text">
                     {{sub.name}}
                   </span>
+                  <ion-icon class="play-button" name="play-circle" (click)="playAudio(sub)" *ngIf="!sub.howl.playing()"></ion-icon>
+                  <ion-icon class="play-button" name="pause" (click)="playAudio(sub)" *ngIf="sub.howl.playing()"></ion-icon>
               <div class="range" *ngIf="sub.howl.playing()">
                 <ion-range #myRange min="0" max="100" [value]="global.getAudioLevel(sub.howl)" step="1" color="light" (ionChange)="global.changeVol($event, sub.howl)">
-                  <ion-icon color="light" slot="start" name="volume-mute"></ion-icon>
-                  <ion-icon color="light" slot="end" name="volume-high"></ion-icon>
                 </ion-range>
               </div>
             </div>
@@ -34,3 +38,4 @@
     </ng-container>
   </ion-grid>
 </ion-content>
+<!-- End content -->

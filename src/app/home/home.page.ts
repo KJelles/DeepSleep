@@ -1,17 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
-import { NativeAudio } from '@ionic-native/native-audio/ngx';
-import { Howl, Howler } from 'howler';
+import { Component } from '@angular/core';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
 import { ModalController } from '@ionic/angular';
 import { SavePage } from '../save/save.page';
-import { Storage } from '@ionic/storage';
 import { MenuController } from '@ionic/angular';
-import { GlobalService } from '../global.service'
+import { GlobalService } from '../global.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
   toggle = {};
   sound = [];
@@ -19,19 +18,16 @@ export class HomePage {
   names = [];
   loop: any;
   itemsClone = [];
-  constructor(private storage: Storage, private nativeAudio: NativeAudio, private admobFree: AdMobFree, public modalController: ModalController, private menu: MenuController, public global: GlobalService) {
+  constructor(private admobFree: AdMobFree, public modalController: ModalController,
+              private menu: MenuController, public global: GlobalService) {
     this.ShowAd();
     this.itemsClone = global.loadData();
     console.log(this.itemsClone);
   }
 
-  ionViewDidLoad() {
-  }
-
-
   openMenu() {
     this.menu.enable(true, 'first');
-    this.menu.toggle('first')
+    this.menu.toggle('first');
   }
 
   playAudio(sub) {
@@ -40,24 +36,20 @@ export class HomePage {
 
   ShowAd() {
     const bannerConfig: AdMobFreeBannerConfig = {
-      // add your config here
-      // for the sake of this example we will just use the test config
-      isTesting: true,
-      autoShow: false
-      // id: 'ca-app-pub-1347745190391274/8633931702'
+      // isTesting: true,
+      autoShow: false,
+      id: 'ca-app-pub-1347745190391274/8633931702' // Not in use anymore
     };
     this.admobFree.banner.config(bannerConfig);
-
     this.admobFree.banner.prepare()
       .then(() => {
         this.admobFree.banner.show();
       })
       .catch(e => console.log(e));
-
   }
 
   async saveAll() {
-    console.log("modal called")
+    console.log('modal called');
     const modal = await this.modalController.create({
       component: SavePage,
       componentProps: { config: this.global.items },
@@ -68,12 +60,12 @@ export class HomePage {
   }
 
   expandItem(item): void {
-    console.log(item)
+    console.log(item);
     if (item.expanded) {
       item.expanded = false;
     } else {
       this.itemsClone.map(listItem => {
-        if (item == listItem) {
+        if (item === listItem) {
           listItem.expanded = !listItem.expanded;
         }
         return listItem;
@@ -82,7 +74,7 @@ export class HomePage {
 
   }
 
-  trackByFn(index: number, item: any): number {
+  trackByFn(index: number): number {
     return index;
   }
 }

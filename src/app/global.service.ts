@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 @Injectable({
   providedIn: 'root'
@@ -12,40 +11,40 @@ export class GlobalService {
   constructor(private musicControls: MusicControls) {
     this.items = [
       {
-        category: "Weather",
+        category: 'Weather',
         expanded: true,
         subitems: [
           {
-            name: "Rain",
-            background: "../assets/backgrounds/rain.jpg",
-            sound: "../assets/sounds/rain.ogg",
-            icon: "../assets/icons/rain.png",
+            name: 'Rain',
+            background: '../assets/backgrounds/rain.jpg',
+            sound: '../assets/sounds/rain.ogg',
+            icon: '../assets/icons/rain.png',
             howl: new Howl({
-              src: ["../assets/sounds/rain.ogg"],
+              src: ['../assets/sounds/rain.ogg'],
               loop: true,
               volume: 0.5,
             }),
             playing: false
           },
           {
-            name: "Thunder",
-            background: "../assets/backgrounds/thunder.jpg",
-            sound: "../assets/sounds/thunder.ogg",
-            icon: "../assets/icons/thunder.png",
+            name: 'Thunder',
+            background: '../assets/backgrounds/thunder.jpg',
+            sound: '../assets/sounds/thunder.ogg',
+            icon: '../assets/icons/thunder.png',
             howl: new Howl({
-              src: ["../assets/sounds/thunder.ogg"],
+              src: ['../assets/sounds/thunder.ogg'],
               loop: true,
               volume: 0.5
             }),
             playing: false
           },
           {
-            name: "Wind",
-            background: "../assets/backgrounds/wind.jpg",
-            sound: "../assets/sounds/wind.ogg",
-            icon: "../assets/icons/wind.png",
+            name: 'Wind',
+            background: '../assets/backgrounds/wind.jpg',
+            sound: '../assets/sounds/wind.ogg',
+            icon: '../assets/icons/wind.png',
             howl: new Howl({
-              src: ["../assets/sounds/wind.ogg"],
+              src: ['../assets/sounds/wind.ogg'],
               loop: true,
               volume: 0.5
             }),
@@ -54,28 +53,40 @@ export class GlobalService {
         ]
       },
       {
-        category: "Landscapes",
+        category: 'Landscapes',
         expanded: false,
         subitems: [
           {
-            name: "Forest",
-            background: "../assets/backgrounds/forest.jpg",
-            sound: "../assets/sounds/forest.ogg",
-            icon: "../assets/icons/forest.png",
+            name: 'Forest',
+            background: '../assets/backgrounds/forest.jpg',
+            sound: '../assets/sounds/forest.ogg',
+            icon: '../assets/icons/forest.png',
             howl: new Howl({
-              src: ["../assets/sounds/forest.ogg"],
+              src: ['../assets/sounds/forest.ogg'],
               loop: true,
               volume: 0.5
             }),
             playing: false
           },
           {
-            name: "Beach",
-            background: "../assets/backgrounds/sea.jpg",
-            sound: "../assets/sounds/beach.ogg",
-            icon: "../assets/icons/sea.png",
+            name: 'Beach',
+            background: '../assets/backgrounds/sea.jpg',
+            sound: '../assets/sounds/beach.ogg',
+            icon: '../assets/icons/sea.png',
             howl: new Howl({
-              src: ["../assets/sounds/beach.ogg"],
+              src: ['../assets/sounds/beach.ogg'],
+              loop: true,
+              volume: 0.5
+            }),
+            playing: false
+          },
+          {
+            name: 'Jungle',
+            background: '../assets/backgrounds/jungle.jpg',
+            sound: '../assets/sounds/jungle.ogg',
+            icon: '../assets/icons/jungle.png',
+            howl: new Howl({
+              src: ['../assets/sounds/jungle.ogg'],
               loop: true,
               volume: 0.5
             }),
@@ -84,28 +95,58 @@ export class GlobalService {
         ]
       },
       {
-        category: "Misc",
+        category: 'Animals',
         expanded: false,
         subitems: [
           {
-            name: "White noise",
-            background: "../assets/backgrounds/noise.jpg",
-            sound: "../assets/sounds/noise.ogg",
-            icon: "../assets/icons/noise.png",
+            name: 'Birds',
+            background: '../assets/backgrounds/birds.jpg',
+            sound: '../assets/sounds/birds.ogg',
+            icon: '../assets/icons/birds.png',
             howl: new Howl({
-              src: ["../assets/sounds/noise.ogg"],
+              src: ['../assets/sounds/birds.ogg'],
+              loop: true,
+              volume: 0.5
+            }),
+            playing: false
+          }
+        ]
+      },
+      {
+        category: 'Misc',
+        expanded: false,
+        subitems: [
+          {
+            name: 'White noise',
+            background: '../assets/backgrounds/noise.jpg',
+            sound: '../assets/sounds/noise.ogg',
+            icon: '../assets/icons/noise.png',
+            howl: new Howl({
+              src: ['../assets/sounds/noise.ogg'],
               loop: true,
               volume: 0.5
             }),
             playing: false
           },
           {
-            name: "Fire",
-            background: "../assets/backgrounds/fire.jpg",
-            sound: "../assets/sounds/fire.ogg",
-            icon: "../assets/icons/fire.png",
+            name: 'Brown noise',
+            background: '../assets/backgrounds/bnoise.jpg',
+            sound: '../assets/sounds/bnoise.ogg',
+            icon: '../assets/icons/noise.png',
             howl: new Howl({
-              src: ["../assets/sounds/fire.ogg"],
+              src: ['../assets/sounds/bnoise.ogg'],
+              loop: true,
+              volume: 0.5
+            }),
+            playing: false
+          },
+          {
+            name: 'Fire',
+            background: '../assets/backgrounds/fire.jpg',
+            sound: '../assets/sounds/fire.ogg',
+            icon: '../assets/icons/fire.png',
+            howl: new Howl({
+              src: ['../assets/sounds/fire.ogg'],
               loop: true,
               volume: 0.5
             }),
@@ -113,7 +154,7 @@ export class GlobalService {
           }
         ]
       }
-    ]
+    ];
   }
 
   public loadData() {
@@ -134,7 +175,7 @@ export class GlobalService {
   }
 
   isAlive() {
-    let alive = [];
+    const alive = [];
     for (let i = 0; i < this.items.length; i++) {
       for (let x = 0; x < this.items[i].subitems.length; x++) {
         alive.push(this.items[i].subitems[x].howl.playing());
@@ -146,14 +187,12 @@ export class GlobalService {
   }
 
   playSound(sub) {
-    console.log("sub is ", sub);
     if (!sub.howl.playing()) {
       sub.howl.play();
       sub.howl.fade(0, 1, 1000);
-      this.loop = setInterval(function () {
+      this.loop = setInterval(function() {
         if ((sub.howl.seek() / sub.howl._duration) > 0.9) {
-          sub.howl.seek(0)
-          console.log("looped!")
+          sub.howl.seek(0);
         }
       }, 1000);
       this.initControl();
@@ -169,19 +208,11 @@ export class GlobalService {
   initControl() {
     this.musicControls.create({
       cover: '../assets/icons/controls.jpg',      // optional, default : nothing
-      // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
-      //           or a remote url ('http://...', 'https://...', 'ftp://...')
       isPlaying: true,                         // optional, default : true
       dismissable: false,                         // optional, default : false
-
-      // hide previous/next/close buttons:
       hasPrev: false,      // show previous button, optional, default: true
       hasNext: false,      // show next button, optional, default: true
       hasClose: false,       // show close button, optional, default: false
-
-      // Android only, optional
-      // text displayed in the status bar when the notification (and the ticker) are updated, optional
-      // All icons default to their built-in android equivalents
       playIcon: 'media_play',
       pauseIcon: 'media_pause',
       prevIcon: 'media_prev',
@@ -190,17 +221,16 @@ export class GlobalService {
       notificationIcon: 'notification'
     });
 
-    this.musicControls.subscribe().subscribe(action => {
-
+    this.musicControls.subscribe().subscribe(() => {
       this.musicControls.subscribe().subscribe((action) => {
-        let message = JSON.parse(action).message;
+        const message = JSON.parse(action).message;
         switch (message) {
           case 'music-controls-next':
             break;
           case 'music-controls-previous':
             break;
           case 'music-controls-pause':
-            this.muteAll()
+            this.muteAll();
             break;
           case 'music-controls-play':
             break;
@@ -221,13 +251,10 @@ export class GlobalService {
           default:
             break;
         }
-      })
-    })
-
+      });
+    });
     this.musicControls.listen(); // activates the observable above
-
     this.musicControls.updateIsPlaying(true);
-
   }
 
   setSleepyset() {
@@ -243,7 +270,6 @@ export class GlobalService {
             this.items[i].subitems[x].howl.stop();
           }
         }
-      
       }
     }
   }
@@ -253,7 +279,7 @@ export class GlobalService {
       this.changeVol(JSON.parse(localStorage.getItem(item._src)), item);
       return (JSON.parse(localStorage.getItem(item._src)) * 100);
     } else {
-      localStorage.setItem(item._src, "0.5");
+      localStorage.setItem(item._src, '0.5');
       return 50;
     }
   }
@@ -263,7 +289,7 @@ export class GlobalService {
   }
 
   changeVol(val, item) {
-    let vol
+    let vol;
     val.detail ? vol = val.detail.value / 100 : vol = val;
     item.volume(vol);
     this.setAudioLevel(item);

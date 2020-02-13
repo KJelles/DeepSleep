@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { GlobalService } from '../global.service';
 
-
 @Component({
   selector: 'app-save',
   templateUrl: './save.page.html',
@@ -19,7 +18,8 @@ export class SavePage implements OnInit {
   allowPlay = null;
   items: any;
   checks = [];
-  constructor(private nav: NavController, private modalCtrl: ModalController, private storage: Storage, private toastController: ToastController, public global: GlobalService) {
+  constructor(private nav: NavController, private modalCtrl: ModalController,
+              private storage: Storage, private toastController: ToastController, public global: GlobalService) {
     this.getData();
     this.storage.keys()
       .then(
@@ -28,7 +28,7 @@ export class SavePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.config)
+    console.log(this.config);
   }
 
   getData() {
@@ -53,8 +53,8 @@ export class SavePage implements OnInit {
       .then(
         data => this.items = data
       );
-    console.log("this items = ", this.items)
-      if (this.items.indexOf(this.name) > -1) {
+    console.log('this items = ', this.items);
+    if (this.items.indexOf(this.name) > -1) {
         this.allowName = false;
       } else {
         this.allowName = true;
@@ -64,7 +64,7 @@ export class SavePage implements OnInit {
   checkPlay() {
     for (let i = 0; i < this.config.length; i++) {
       for (let x = 0; x < this.config[i].subitems.length; x++) {
-        this.checks.push(this.config[i].subitems[x].howl.playing())
+        this.checks.push(this.config[i].subitems[x].howl.playing());
       }
     }
     if (this.checks.indexOf(true) > -1) {
@@ -81,11 +81,9 @@ export class SavePage implements OnInit {
     this.temp = [];
     for (let i = 0; i < this.config.length; i++) {
       for (let x = 0; x < this.config[i].subitems.length; x++) {
-        console.log("allow name = ", this.allowName, " allow play = ", this.allowPlay);
         if (this.config[i].subitems[x].howl.playing()) {
           if (this.allowName && this.allowPlay) {
-            this.temp.push({ src: this.config[i].subitems[x].howl._src, vol: this.config[i].subitems[x].howl._volume })
-            console.log("temp is", this.temp)
+            this.temp.push({ src: this.config[i].subitems[x].howl._src, vol: this.config[i].subitems[x].howl._volume });
             this.storage.set(this.name, JSON.stringify(this.temp));
           } else {
             return;

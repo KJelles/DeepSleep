@@ -25,19 +25,21 @@ ion-row {
     position: absolute;
     left: 0;
     width: 100%;
-    filter: brightness(0.4);
+    filter: brightness(0.3);
 
 }
 
 .item-text {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
     z-index: 999;
+    position: absolute;
+    left: 60px;
 }
 
 .icon {
-    width: 30px;
+    width: 20px;
     filter: brightness(0) invert(1);
     position: absolute;
     left: 20px;
@@ -86,9 +88,10 @@ ion-toolbar {
 
 .range {
     position: absolute;
-    width: 80%;
+    width: 50%;
     right: 0;
     z-index: 999;
+    margin-right: 30px;
 }
 
 ion-content {
@@ -120,4 +123,13 @@ ion-content {
         color: white;
     }
 }
+
+.play-button {
+    position: absolute;
+    font-size: 24px;
+    right: 10px;
+    color: white;
+  }
+
+
 
